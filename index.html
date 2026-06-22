@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>โลกของแมลง</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0d2b0d;
+      color: #d4f5d4;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1a5c1a, #2e8b2e);
+      padding: 60px 20px;
+      text-align: center;
+      border-bottom: 4px solid #4caf50;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '🌿';
+      position: absolute;
+      font-size: 200px;
+      opacity: 0.05;
+      top: -30px;
+      left: -30px;
+    }
+
+    header::after {
+      content: '🍃';
+      position: absolute;
+      font-size: 200px;
+      opacity: 0.05;
+      bottom: -50px;
+      right: -30px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: #a5f3a5;
+      text-shadow: 0 0 20px #4caf5066;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      margin-top: 12px;
+      font-size: 1.1rem;
+      color: #81c784;
+    }
+
+    nav {
+      background: #143d14;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      flex-wrap: wrap;
+      border-bottom: 2px solid #2e7d32;
+    }
+
+    nav a {
+      color: #a5d6a7;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      border: 1px solid #2e7d32;
+    }
+
+    nav a:hover {
+      background: #2e7d32;
+      color: #c8e6c9;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .intro-box {
+      background: linear-gradient(135deg, #1b4d1b, #1e5c1e);
+      border: 1px solid #388e3c;
+      border-left: 5px solid #4caf50;
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 48px;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #c8e6c9;
+    }
+
+    .intro-box strong {
+      color: #81c784;
+    }
+
+    section {
+      margin-bottom: 52px;
+    }
+
+    section h2 {
+      font-size: 1.7rem;
+      color: #66bb6a;
+      margin-bottom: 24px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #2e7d32;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #1b3d1b;
+      border: 1px solid #2e7d32;
+      border-radius: 14px;
+      padding: 24px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px #00000066;
+      border-color: #4caf50;
+    }
+
+    .card .icon {
+      font-size: 2.8rem;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      color: #a5d6a7;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: #81c784;
+      line-height: 1.6;
+    }
+
+    .card .tag {
+      display: inline-block;
+      background: #2e7d32;
+      color: #c8e6c9;
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 12px;
+      margin-top: 10px;
+    }
+
+    .fact-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .fact-item {
+      background: #163016;
+      border: 1px solid #2e7d32;
+      border-radius: 10px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .fact-item .num {
+      background: #2e7d32;
+      color: #c8e6c9;
+      font-weight: bold;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.85rem;
+    }
+
+    .fact-item p {
+      font-size: 0.95rem;
+      color: #a5d6a7;
+      line-height: 1.6;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .stat-box {
+      background: #163a16;
+      border: 1px solid #388e3c;
+      border-radius: 12px;
+      padding: 22px;
+      text-align: center;
+    }
+
+    .stat-box .value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #69f069;
+    }
+
+    .stat-box .label {
+      font-size: 0.85rem;
+      color: #81c784;
+      margin-top: 6px;
+    }
+
+    .anatomy-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    .anatomy-table th {
+      background: #2e7d32;
+      color: #c8e6c9;
+      padding: 12px 16px;
+      text-align: left;
+    }
+
+    .anatomy-table td {
+      padding: 11px 16px;
+      border-bottom: 1px solid #1e5c1e;
+      color: #a5d6a7;
+    }
+
+    .anatomy-table tr:hover td {
+      background: #1b4d1b;
+    }
+
+    footer {
+      background: #0a1f0a;
+      text-align: center;
+      padding: 32px 20px;
+      color: #4a7a4a;
+      font-size: 0.9rem;
+      border-top: 2px solid #1b4d1b;
+    }
+
+    footer span {
+      color: #4caf50;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🪲 โลกของแมลง</h1>
+  <p>สำรวจสิ่งมีชีวิตที่หลากหลายและน่าทึ่งที่สุดบนโลก</p>
+</header>
+
+<nav>
+  <a href="#intro">แมลงคืออะไร?</a>
+  <a href="#types">ประเภทแมลง</a>
+  <a href="#anatomy">โครงสร้างร่างกาย</a>
+  <a href="#facts">ข้อเท็จจริง</a>
+  <a href="#stats">สถิติน่ารู้</a>
+</nav>
+
+<main>
+
+  <section id="intro">
+    <div class="intro-box">
+      <strong>แมลง (Insect)</strong> คือสัตว์ขาปล้องในชั้น <strong>Insecta</strong> ซึ่งเป็นกลุ่มสัตว์ที่มีความหลากหลายมากที่สุดบนโลก
+      แมลงมีร่างกายแบ่งเป็น <strong>3 ส่วน</strong> ได้แก่ หัว อก และท้อง มีขา <strong>6 ขา</strong> และส่วนใหญ่มีปีก
+      แมลงอาศัยอยู่ในทุกสภาพแวดล้อมบนโลก ตั้งแต่ป่าฝนเขตร้อนไปจนถึงทะเลทราย และมีบทบาทสำคัญอย่างยิ่งต่อระบบนิเวศ
+      ทั้งในด้านการผสมเกสร การย่อยสลาย และเป็นแหล่งอาหารของสัตว์อื่น
+    </div>
+  </section>
+
+  <section id="stats">
+    <h2>สถิติน่าทึ่ง</h2>
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="value">1M+</div>
+        <div class="label">ชนิดที่ค้นพบแล้ว</div>
+      </div>
+      <div class="stat-box">
+        <div class="value">80%</div>
+        <div class="label">ของสัตว์ทั้งหมดบนโลก</div>
+      </div>
+      <div class="stat-box">
+        <div class="value">10¹⁹</div>
+        <div class="label">จำนวนตัวบนโลก</div>
+      </div>
+      <div class="stat-box">
+        <div class="value">400M</div>
+        <div class="label">ปีที่วิวัฒนาการมา</div>
+      </div>
+      <div class="stat-box">
+        <div class="value">75%</div>
+        <div class="label">พืชที่ต้องแมลงผสมเกสร</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="types">
+    <h2>ประเภทแมลงที่น่าสนใจ</h2>
+    <div class="card-grid">
+      <div class="card">
+        <div class="icon">🦋</div>
+        <h3>ผีเสื้อ</h3>
+        <p>แมลงที่มีปีกสีสันสวยงาม ผ่านการเปลี่ยนแปลงรูปร่างสมบูรณ์ 4 ระยะ ตั้งแต่ไข่ หนอน ดักแด้ และตัวเต็มวัย</p>
+        <span class="tag">Lepidoptera</span>
+      </div>
+      <div class="card">
+        <div class="icon">🐝</div>
+        <h3>ผึ้ง</h3>
+        <p>แมลงสังคมที่มีระบบการทำงานร่วมกันที่ซับซ้อน มีบทบาทสำคัญในการผสมเกสรพืชกว่า 1 ใน 3 ของอาหารมนุษย์</p>
+        <span class="tag">Hymenoptera</span>
+      </div>
+      <div class="card">
+        <div class="icon">🐛</div>
+        <h3>ด้วง</h3>
+        <p>อันดับแมลงที่มีชนิดมากที่สุดในโลก มีมากกว่า 400,000 ชนิด พบได้ในทุกสภาพแวดล้อมทั่วโลก</p>
+        <span class="tag">Coleoptera</span>
+      </div>
+      <div class="card">
+        <div class="icon">🦗</div>
+        <h3>จิ้งหรีด</h3>
+        <p>แมลงที่เปล่งเสียงโดยการถูปีกเข้าหากัน ใช้เสียงในการดึงดูดคู่ผสมพันธุ์ มีโปรตีนสูง นิยมนำมาบริโภค</p>
+        <span class="tag">Orthoptera</span>
+      </div>
+      <div class="card">
+        <div class="icon">🪳</div>
+        <h3>แมลงสาบ</h3>
+        <p>หนึ่งในสิ่งมีชีวิตที่เก่าแก่ที่สุด มีมากว่า 300 ล้านปี สามารถปรับตัวและอยู่รอดในสภาพแวดล้อมที่รุนแรงได้</p>
+        <span class="tag">Blattodea</span>
+      </div>
+      <div class="card">
+        <div class="icon">🦟</div>
+        <h3>ยุง</h3>
+        <p>แมลงที่ดูดเลือดเพื่อสืบพันธุ์ ถือเป็นสัตว์ที่ทำให้มนุษย์เสียชีวิตมากที่สุดผ่านการแพร่โรคมาลาเรีย ไข้เลือดออก</p>
+        <span class="tag">Diptera</span>
+      </div>
+      <div class="card">
+        <div class="icon">🪲</div>
+        <h3>ตั๊กแตน</h3>
+        <p>แมลงที่มีขาหลังแข็งแรงสำหรับกระโดด บางชนิดรวมฝูงเป็นล้านตัวสร้างความเสียหายให้แก่พืชผลอย่างรุนแรง</p>
+        <span class="tag">Orthoptera</span>
+      </div>
+      <div class="card">
+        <div class="icon">🐜</div>
+        <h3>มด</h3>
+        <p>แมลงสังคมที่มีการจัดระเบียบสูง อาศัยในอาณาจักรตั้งแต่หลักสิบถึงหลายล้านตัว มีน้ำหนักรวมกันมากกว่ามนุษย์</p>
+        <span class="tag">Hymenoptera</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="anatomy">
+    <h2>โครงสร้างร่างกายแมลง</h2>
+    <table class="anatomy-table">
+      <thead>
+        <tr>
+          <th>ส่วนของร่างกาย</th>
+          <th>องค์ประกอบ</th>
+          <th>หน้าที่</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>🟢 หัว (Head)</td>
+          <td>ตา, หนวด, ปาก</td>
+          <td>รับความรู้สึก, กิน, ดมกลิ่น, มองเห็น</td>
+        </tr>
+        <tr>
+          <td>🟢 อก (Thorax)</td>
+          <td>ขา 3 คู่, ปีก 1-2 คู่</td>
+          <td>การเคลื่อนที่, บิน, เดิน</td>
+        </tr>
+        <tr>
+          <td>🟢 ท้อง (Abdomen)</td>
+          <td>อวัยวะย่อยอาหาร, สืบพันธุ์</td>
+          <td>ย่อยอาหาร, หายใจ, สืบพันธุ์</td>
+        </tr>
+        <tr>
+          <td>🟢 หนวด (Antennae)</td>
+          <td>ตัวรับความรู้สึก</td>
+          <td>รับกลิ่น, สัมผัส, อุณหภูมิ, ความชื้น</td>
+        </tr>
+        <tr>
+          <td>🟢 ตาประกอบ (Compound Eyes)</td>
+          <td>เลนส์เล็กหลายร้อยถึงพัน</td>
+          <td>มองเห็นการเคลื่อนไหวได้ดีมาก</td>
+        </tr>
+        <tr>
+          <td>🟢 โครงร่างภายนอก (Exoskeleton)</td>
+          <td>ไคติน (Chitin)</td>
+          <td>ป้องกันร่างกาย, ป้องกันการสูญเสียน้ำ</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="facts">
+    <h2>ข้อเท็จจริงที่น่าทึ่ง</h2>
+    <div class="fact-list">
+      <div class="fact-item">
+        <div class="num">1</div>
+        <p>ผึ้งงานตัวหนึ่งจะผลิตน้ำผึ้งได้เพียง <strong>1/12 ช้อนชา</strong> ตลอดชีวิต</p>
+      </div>
+      <div class="fact-item">
+        <div class="num">2</div>
+        <p>แมลงวันมีตาประกอบที่มองเห็นได้ <strong>360 องศา</strong> รอบตัว</p>
+      </div>
+      <div class="fact-item">
+        <div class="num">3</div>
+        <p>มดสามารถยก <strong>50 เท่า</strong> ของน้ำหนักตัวเองได้</p>
+      </div>
+      <div class="fact-item">
+        <div class="num">4</div>
+        <p>หิ่งห้อยใช้ปฏิกิริยาเคมีสร้างแสงที่มีประสิทธิภาพ <strong>100%</strong> ไม่เสียพลังงานเป็นความร้อน</p>
+      </div>
+      <div class="fact-item">
+        <div class="num">5</div>
+        <p>ผีเสื้อรับรสด้วย <strong>ขา</strong> ไม่ใช่ปาก เนื่องจากมีตัวรับรสที่เท้า</p>
+      </div>
+      <div class="fact-item">
+        <div class="num">6</div>
+        <p>แมลงสาบสามารถมีชีวิตอยู่ได้นานถึง <strong>1 สัปดาห์</strong> แม้ถูกตัดหัว</p>
+      </div>
+      <div class="fact-item">
+        <div class="num">7</div>
+        <p>ยุงตัวเมียเท่านั้นที่ดูดเลือด ตัวผู้กินน้ำหวานจากดอกไม้</p>
+      </div>
+      <div class="fact-item">
+        <div class="num">8</div>
+        <p>แมลงปอสามารถบินได้เร็วถึง <strong>56 กม./ชม.</strong> และจับเหยื่อสำเร็จ 95% ของครั้ง</p>
+      </div>
+      <div class="fact-item">
+        <div class="num">9</div>
+        <p>นักวิทยาศาสตร์คาดว่ายังมีแมลงที่ยังไม่ถูกค้นพบอีกกว่า <strong>8 ล้านชนิด</strong></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>🌿 โลกของแมลง &mdash; สำรวจความมหัศจรรย์ของธรรมชาติ 🌿</p>
+  <p style="margin-top:8px;">แมลงมีบทบาทสำคัญต่อสมดุลของ <span>ระบบนิเวศ</span> ที่เราพึ่งพาอยู่ทุกวัน</p>
+</footer>
+
+</body>
+</html>

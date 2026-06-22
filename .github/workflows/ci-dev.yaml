@@ -1,0 +1,17 @@
+name: CI Main
+
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
+jobs:
+  deploy:
+    uses: bug8499/IaC-GitOps-Vultr/.github/workflows/argocicd.yml@main
+    with:
+      service_name: app1
+      environment: prod
+      image_tag: ${{ github.sha }}
+    secrets:
+      GH_PAT: ${{ secrets.GH_PAT }}

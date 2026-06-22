@@ -10,7 +10,7 @@ jobs:
   deploy:
     uses: bug8499/IaC-GitOps-Vultr/.github/workflows/argocicd.yml@main
     with:
-      service_name: app1
+      service_name: bugbug-website
       environment: prod
       image_tag: ${{ github.sha }}
     secrets:
